@@ -9,9 +9,8 @@ import scrapy
 URL = os.environ['OZ_URL']
 
 
-class QuotesSpider(scrapy.Spider):
+class OzSpider(scrapy.Spider):
     name = 'oz'
-    stop = False
     rate = 0.5
 
     @property
