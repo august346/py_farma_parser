@@ -67,7 +67,7 @@ class GzSpider(scrapy.Spider):
             return (
                 response
                 .xpath('//div[@itemtype="http://schema.org/BreadcrumbList"]')
-                .xpath('.//span[@itemprop="name"]/text()').getall()[1:-1]
+                .xpath('.//span[@itemprop="name"]/text()').getall()
             )[1:-1]
 
         def general():
