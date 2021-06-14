@@ -1,6 +1,5 @@
 import os
-from typing import Callable, Optional, Generator, Iterable, Union
-from urllib.parse import urljoin
+from typing import Generator, Iterable, Union
 
 import scrapy
 
@@ -16,25 +15,12 @@ class HpSpider(scrapy.Spider):
         return 1 / self.rate
 
     def parse(self, response: scrapy.http.Response, **kwargs) -> Iterable[Union[Generator, dict]]:
-        parse_methods: dict[
-            Optional[str],
-            Callable[
-                [scrapy.http.Response],
-                Union[Generator, dict]
-            ]
-        ] = {
+        yield from {
             None: self.parse_landing,
             "letter": self.parse_letter,
             "mnn": self.parse_mnn,
             "medicament": self.parse_medicament
-        }
-
-        current_method: Callable[
-            [scrapy.http.Response],
-            Union[Generator, dict]
-        ] = parse_methods[kwargs.get("page")]
-
-        yield from current_method(response)
+        }[kwargs.get("page")](response)
 
     def parse_landing(self, response: scrapy.http.Response) -> Generator:
         for href in response.css('li.main-alphabet__nav-item a::attr(href)').getall():

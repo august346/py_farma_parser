@@ -48,7 +48,6 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'farma_parser.custom_middlewares.request.ProxyMiddleware': 350,
-    # 'farma_parser.custom_middlewares.request.HpLetterMiddleware': 351,
     'farma_parser.middlewares.FarmaParserDownloaderMiddleware': None,
 }
 
