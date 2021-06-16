@@ -1,5 +1,5 @@
 ### Environments
-needed `farma_parser/farma_parser/.env` file:
+`farma_parser/farma_parser/.env`
 ```dotenv
 # proxy info
 PROXY_URL=http:0.0.0.0:0000
