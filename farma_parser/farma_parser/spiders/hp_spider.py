@@ -3,16 +3,14 @@ from typing import Generator, Iterable, Union
 
 import scrapy
 
+from . import FarmaSpider
 
-class HpSpider(scrapy.Spider):
+
+class HpSpider(FarmaSpider):
     name = 'hp'
     rate = 1
 
     start_urls = [os.environ['HP_URL']]
-
-    @property
-    def download_delay(self) -> float:
-        return 1 / self.rate
 
     def parse(self, response: scrapy.http.Response, **kwargs) -> Iterable[Union[Generator, dict]]:
         yield from {

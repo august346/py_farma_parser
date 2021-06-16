@@ -6,16 +6,14 @@ from typing import Callable, Optional
 import jq
 import scrapy
 
+from . import FarmaSpider
+
 URL = os.environ['OZ_URL']
 
 
-class OzSpider(scrapy.Spider):
+class OzSpider(FarmaSpider):
     name = 'oz'
-    rate = 0.5
-
-    @property
-    def download_delay(self) -> float:
-        return 1 / self.rate
+    rate = 1
 
     @cached_property
     def graphql_query(self) -> str:
@@ -24,10 +22,6 @@ class OzSpider(scrapy.Spider):
     @cached_property
     def jq_query(self) -> str:
         return self.read_file('jq')
-
-    def read_file(self, file_ext: str) -> str:
-        with open(f'farma_parser/files/{self.name}.{file_ext}', 'r', encoding='utf-8') as file:
-            return file.read()
 
     def start_requests(self):
         yield self.get_request(0)

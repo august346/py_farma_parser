@@ -1,8 +1,7 @@
 query productDetail($page: Int, $size: Int) {
     productDetail: productsElastic(
         pageSize: $size,
-        currentPage: $page,
-        sort: {name: ASC}
+        currentPage: $page
     ) {
         items {
             id

@@ -4,16 +4,14 @@ from urllib.parse import urljoin
 
 import scrapy
 
+from . import FarmaSpider
 
-class GzSpider(scrapy.Spider):
+
+class GzSpider(FarmaSpider):
     name = 'gz'
     rate = 1
 
     start_urls = [os.environ['GZ_URL']]
-
-    @property
-    def download_delay(self) -> float:
-        return 1 / self.rate
 
     def parse(self, response: scrapy.http.Response, **kwargs) -> Iterable[Union[Generator, dict]]:
         yield from {
