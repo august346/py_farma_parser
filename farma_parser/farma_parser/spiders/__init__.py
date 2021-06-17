@@ -22,3 +22,7 @@ class FarmaSpider(scrapy.Spider):
 
     def parse(self, response, **kwargs):
         raise NotImplemented
+
+    @staticmethod
+    def _dict_to_list(data: dict) -> list[dict]:
+        return [{'key': key, 'value': value} for key, value in data.items()]

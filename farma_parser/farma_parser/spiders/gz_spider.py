@@ -118,10 +118,10 @@ class GzSpider(FarmaSpider):
                 "url": response.url,
                 "title": response.xpath('//h1[has-class("b-page-title")][@itemprop="name"]/text()').get(),
                 "groups": groups(),
-                "general": general(),
-                "specs": specs(),
+                "general": self._dict_to_list(general()),
+                "specs": self._dict_to_list(specs()),
                 "images": images(),
-                "description": description(),
+                "description": self._dict_to_list(description()),
                 "analogs": analogs(),
                 "price": price()
             }

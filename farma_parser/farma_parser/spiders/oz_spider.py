@@ -21,7 +21,7 @@ class OzSpider(FarmaSpider):
 
     @cached_property
     def jq_query(self) -> str:
-        return self.read_file('jq')
+        return '.data.productDetail.items'
 
     def start_requests(self):
         yield self.get_request(0)

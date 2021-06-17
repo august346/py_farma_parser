@@ -102,9 +102,9 @@ class HpSpider(FarmaSpider):
                 "url": response.url,
                 "title": (response.css('h1.product-detail__title::text').get() or '').strip(),
                 "groups": groups(),
-                "general": general(),
+                "general": self._dict_to_list(general()),
                 "images": response.xpath('//div[@data-fancybox="gallery"]/@href').getall(),
-                "description": description(),
+                "description": self._dict_to_list(description()),
                 "price": price()
             }
         ]
